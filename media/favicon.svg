@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JF favicon">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#043b5f" />
+      <stop offset="100%" stop-color="#00bcd4" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)" />
+  <path d="M19 18h22v6H26v10h12v6H26v6c0 3.3-2.7 6-6 6h-3v-6h2c.6 0 1-.4 1-1V18z" fill="#ffffff" />
+  <path d="M44 18v6h-8v22h-6V18h14z" fill="#dffaff" />
+</svg>

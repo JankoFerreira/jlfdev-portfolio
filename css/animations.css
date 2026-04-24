@@ -6,9 +6,18 @@
     animation: fadeDown 1s ease forwards;
 }
 
+.navbar.fade-down {
+    animation: fadeDownCentered 0.9s ease forwards;
+}
+
 @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-40px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDownCentered {
+    from { opacity: 0; transform: translateX(-50%) translateY(-40px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
 .fade-in {
@@ -35,7 +44,8 @@
 /* Scroll reveal helpers */
 .reveal, .reveal-up, .reveal-left, .reveal-right {
     opacity: 0;
-    transition: all 0.9s ease;
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    will-change: opacity, transform;
 }
 
 .reveal.active,

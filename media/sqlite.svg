@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="SQLite">
+  <defs>
+    <linearGradient id="sqlite-body" x1="20" x2="108" y1="18" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7dd3fc"/>
+      <stop offset=".46" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#0f3f7a"/>
+    </linearGradient>
+    <linearGradient id="sqlite-feather" x1="68" x2="104" y1="22" y2="98" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8fbff"/>
+      <stop offset=".45" stop-color="#dff6ff"/>
+      <stop offset="1" stop-color="#8bd6f7"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#sqlite-body)" d="M22 30c0-9.4 19-17 42-17s42 7.6 42 17v68c0 9.4-19 17-42 17s-42-7.6-42-17V30z"/>
+  <path fill="#a7e7ff" d="M106 30c0 9.4-19 17-42 17s-42-7.6-42-17 19-17 42-17 42 7.6 42 17z"/>
+  <path fill="#0b2750" fill-opacity=".42" d="M64 76c23 0 42-7.6 42-17v13c0 9.4-19 17-42 17s-42-7.6-42-17V59c0 9.4 19 17 42 17z"/>
+  <path fill="#061525" fill-opacity=".32" d="M64 102c23 0 42-7.6 42-17v13c0 9.4-19 17-42 17s-42-7.6-42-17V85c0 9.4 19 17 42 17z"/>
+  <path fill="#eaf9ff" d="M39 31c0-4.3 11.2-7.8 25-7.8s25 3.5 25 7.8-11.2 7.8-25 7.8-25-3.5-25-7.8z"/>
+  <path fill="#04172d" fill-opacity=".18" d="M35 56h31v7H35zm0 26h38v7H35z"/>
+  <path fill="url(#sqlite-feather)" d="M94.5 15.5c-10.8 8.9-17.7 22-21.4 38.1-3 13.2-3.2 27.3-2 39.7.2 2.4 3.6 2.8 4.4.5 4.1-12 9.3-23.3 15.6-33.6 5.6-9.1 12.5-18.4 20.9-26.5 1.5-1.5.6-4-1.4-4.3-4-.7-8.1-.1-12.5 1.5 2.2-4.2 4.5-8 7-11.4 1.3-1.8-.3-4.3-2.5-3.9-2.9.4-5.5 1.7-8.1 3.9z"/>
+  <path fill="#0f3f7a" fill-opacity=".34" d="M86.8 53.2c-5.5 10.3-9.8 22.6-12.9 36.8-.8-11.8-.2-24.1 2.6-35.8 3-12.9 8.1-23.7 15.6-31.9-4.1 8.1-5.9 18.3-5.3 30.9z"/>
+</svg>

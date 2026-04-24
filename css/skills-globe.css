@@ -1,0 +1,302 @@
+.skills-globe-host {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+}
+
+.skills-globe-mount {
+    width: min(100%, 720px);
+    padding: 0;
+}
+
+.skills-globe-component {
+    width: 100%;
+}
+
+.skills-globe-component .sg-globe-wrap {
+    position: relative;
+    width: min(100%, 560px);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(0 22px 46px rgba(2, 10, 24, 0.26));
+}
+
+.skills-globe-component .sg-globe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    perspective: 1000px;
+    will-change: transform;
+    transform: translateZ(0);
+    transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+.skills-globe-component .sg-globe:hover {
+    transform: scale(1.008);
+}
+
+.skills-globe-component .sg-globe:active,
+.skills-globe-component .sg-globe.is-dragging {
+    cursor: grabbing;
+    transform: scale(1.015);
+}
+
+.skills-globe-component .sg-globe-hint {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    right: auto;
+    z-index: 10;
+    font-size: 0.74rem;
+    color: rgba(223, 249, 255, 0.78);
+    padding: 9px 13px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(6, 21, 37, 0.58);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(2, 10, 24, 0.24);
+    transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    transform: translateX(-50%);
+}
+
+.skills-globe-component .sg-globe-wrap.is-dragging .sg-globe-hint,
+.skills-globe-component .sg-globe-wrap:hover .sg-globe-hint {
+    transform: translateX(-50%) translateY(-2px);
+    background: rgba(6, 21, 37, 0.76);
+    border-color: rgba(86, 231, 255, 0.18);
+    box-shadow: 0 12px 34px rgba(2, 10, 24, 0.28);
+}
+
+.skills-globe-component .sg-globe-shadow {
+    position: absolute;
+    inset: 24%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(86, 231, 255, 0.13), rgba(143, 107, 255, 0.08) 42%, transparent 68%);
+    filter: blur(22px);
+    transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.skills-globe-component .sg-globe:hover .sg-globe-shadow,
+.skills-globe-component .sg-globe.is-dragging .sg-globe-shadow {
+    transform: scale(1.04);
+    opacity: 0.95;
+}
+
+.skills-globe-component .sg-globe-core {
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 28%, rgba(86, 231, 255, 0.14), transparent 28%),
+        radial-gradient(circle at 72% 62%, rgba(143, 107, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(6, 21, 37, 0.48), rgba(2, 9, 16, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+        inset 0 0 72px rgba(86, 231, 255, 0.06),
+        inset 0 0 26px rgba(143, 107, 255, 0.06),
+        0 0 52px rgba(86, 231, 255, 0.04);
+}
+
+.skills-globe-component .sg-globe-ring,
+.skills-globe-component .sg-globe-lat {
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.skills-globe-component .sg-globe-ring.sg-horizontal {
+    border: 1px solid rgba(143, 107, 255, 0.18);
+}
+
+.skills-globe-component .sg-ring-1 {
+    transform: rotateX(75deg);
+}
+
+.skills-globe-component .sg-ring-2 {
+    transform: rotateX(45deg);
+}
+
+.skills-globe-component .sg-ring-3 {
+    transform: rotateX(15deg);
+}
+
+.skills-globe-component .sg-globe-ring.sg-vertical {
+    border: 1px solid rgba(86, 231, 255, 0.14);
+}
+
+.skills-globe-component .sg-ring-v1 {
+    transform: rotateY(0deg);
+}
+
+.skills-globe-component .sg-ring-v2 {
+    transform: rotateY(35deg);
+}
+
+.skills-globe-component .sg-ring-v3 {
+    transform: rotateY(70deg);
+}
+
+.skills-globe-component .sg-ring-v4 {
+    transform: rotateY(105deg);
+}
+
+.skills-globe-component .sg-globe-lat {
+    left: 20%;
+    right: 20%;
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+    border-left: none;
+    border-right: none;
+}
+
+.skills-globe-component .sg-lat-1 {
+    top: 28%;
+    bottom: 28%;
+    opacity: 0.55;
+}
+
+.skills-globe-component .sg-lat-2 {
+    top: 38%;
+    bottom: 38%;
+    opacity: 0.42;
+}
+
+.skills-globe-component .sg-lat-3 {
+    top: 48%;
+    bottom: 48%;
+    opacity: 0.34;
+}
+
+.skills-globe-component .sg-globe-overlay {
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 50%, transparent 52%, rgba(255, 255, 255, 0.03) 72%, transparent 80%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 30%, transparent 70%, rgba(86, 231, 255, 0.04));
+    pointer-events: none;
+}
+
+.skills-globe-component .sg-globe-dots {
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1.2px);
+    background-size: 18px 18px;
+    opacity: 0.18;
+    mask-image: radial-gradient(circle at center, black 60%, transparent 84%);
+    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 84%);
+    pointer-events: none;
+}
+
+.skills-globe-component .sg-skill-node {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 84px;
+    height: 84px;
+    margin-left: -42px;
+    margin-top: -42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.skills-globe-component .sg-skill-node:hover {
+    z-index: 1200 !important;
+}
+
+.skills-globe-component .sg-skill-node-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+    transition: transform 0.22s ease;
+}
+
+.skills-globe-component .sg-skill-node img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 18px rgba(2, 10, 24, 0.26));
+}
+
+.skills-globe-component .sg-skill-node img[src*="github-brands-solid-full.svg"] {
+    filter: brightness(0) invert(1) drop-shadow(0 8px 18px rgba(2, 10, 24, 0.26));
+}
+
+.skills-globe-component .sg-skill-node span {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    color: rgba(255, 255, 255, 0.92);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    text-shadow: 0 8px 24px rgba(2, 10, 24, 0.42);
+    white-space: nowrap;
+}
+
+.skills-globe-component .sg-skill-node:hover .sg-skill-node-inner {
+    transform: scale(1.12);
+}
+
+.skills-globe-component .sg-skill-node:hover span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .skills-globe-component .sg-globe-wrap {
+        width: min(100%, 500px);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-globe-host {
+        margin-top: 28px;
+    }
+
+    .skills-globe-mount {
+        width: min(100%, 520px);
+        padding: 0;
+    }
+
+    .skills-globe-component .sg-skill-node {
+        width: 68px;
+        height: 68px;
+        margin-left: -34px;
+        margin-top: -34px;
+    }
+
+    .skills-globe-component .sg-skill-node img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .skills-globe-component .sg-skill-node span {
+        font-size: 0.5rem;
+    }
+
+    .skills-globe-component .sg-globe-hint {
+        font-size: 0.68rem;
+        padding: 7px 11px;
+    }
+}
