@@ -802,7 +802,7 @@
 
 @media (max-width: 860px) {
     .jlf-about-section {
-        padding: 76px 16px 64px;
+        padding: 64px 16px 56px;
     }
 
     .jlf-about-grid {
@@ -823,6 +823,11 @@
         transform: none;
     }
 
+    .jlf-about-card:hover,
+    .jlf-about-card:focus-within {
+        transform: none;
+    }
+
     .jlf-about-card--snapshot {
         overflow: hidden;
     }
@@ -830,12 +835,14 @@
     .jlf-about-card--portrait {
         height: auto;
         min-height: 0;
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 16 / 11;
+        max-height: 320px;
     }
 
     .jlf-about-mindset-media {
         min-height: 0;
-        aspect-ratio: 4 / 3.7;
+        aspect-ratio: 16 / 10;
+        margin-block: 12px 10px;
     }
 
     .jlf-about-mindset-media img {
@@ -844,7 +851,7 @@
 
     .jlf-about-signals-stack {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         position: static;
         height: auto;
         gap: 8px;
@@ -861,22 +868,43 @@
         min-height: 0;
         padding: 12px;
         border-radius: 12px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         transform: none !important;
+        transition: border-color 0.2s ease, background 0.2s ease;
     }
 
     .jlf-about-signal h4 {
         font-size: 0.72rem;
+        transition: none;
     }
 
     .jlf-about-signal p {
         font-size: 0.66rem;
+        transition: none;
+    }
+
+    .jlf-about-signal:hover,
+    .jlf-about-signal:focus {
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transform: none !important;
+    }
+
+    .jlf-about-signal:hover h4,
+    .jlf-about-signal:focus h4 {
+        font-size: 0.72rem;
+    }
+
+    .jlf-about-signal:hover p,
+    .jlf-about-signal:focus p {
+        font-size: 0.66rem;
+        line-height: 1.22;
     }
 
 }
 
 @media (max-width: 560px) {
     .jlf-about-section {
-        padding: 66px 14px 58px;
+        padding: 58px 14px 50px;
     }
 
     .mission-section,
@@ -890,8 +918,8 @@
     }
 
     .jlf-about-card {
-        padding: 18px;
-        border-radius: 16px;
+        padding: 16px;
+        border-radius: 14px;
     }
 
     .jlf-about-card:hover,
@@ -902,23 +930,46 @@
     }
 
     .jlf-about-identity-title {
-        font-size: clamp(2rem, 10.8vw, 3rem);
+        font-size: clamp(1.8rem, 9.8vw, 2.7rem);
         line-height: 0.96;
     }
 
     .jlf-about-title {
-        font-size: 1.36rem;
+        font-size: 1.2rem;
         line-height: 1.1;
     }
 
     .jlf-about-card--portrait {
-        aspect-ratio: 4 / 4.75;
+        aspect-ratio: 16 / 10.5;
+        max-height: 250px;
+        padding: 6px;
+    }
+
+    .jlf-about-portrait-frame {
+        border-radius: 12px;
+    }
+
+    .jlf-about-mindset-media {
+        aspect-ratio: 16 / 9;
+        padding: 6px;
+        border-radius: 12px;
     }
 
     .jlf-about-copy {
         max-width: none;
-        font-size: 0.84rem;
-        line-height: 1.55;
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .jlf-about-signals-stack {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .jlf-about-signal {
+        display: block;
+        padding: 10px 11px;
+        text-align: left;
     }
 
     .jlf-about-tag {
@@ -1790,11 +1841,20 @@
 
 @media (max-width: 720px) {
     .experience-section {
-        padding: 86px 14px 76px;
+        padding: 72px 14px 64px;
     }
 
     .experience-section-head {
-        margin-bottom: 28px;
+        margin-bottom: 24px;
+    }
+
+    .experience-section-head h2 {
+        margin-bottom: 14px;
+    }
+
+    .experience-intro {
+        font-size: 0.96rem;
+        line-height: 1.65;
     }
 
     .experience-kicker,
@@ -1803,9 +1863,9 @@
     }
 
     .experience-project-card {
-        gap: 14px;
-        padding: 14px;
-        border-radius: 18px;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 14px;
         transform: none;
     }
 
@@ -1815,24 +1875,44 @@
 
     .experience-project-meta {
         gap: 8px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
     }
 
     .experience-project-number,
     .experience-project-category,
     .experience-project-tags li {
-        font-size: 0.7rem;
+        font-size: 0.66rem;
         line-height: 1.35;
+    }
+
+    .experience-project-copy h3 {
+        font-size: 1.2rem;
+        line-height: 1.12;
+    }
+
+    .experience-project-copy p {
+        font-size: 0.9rem;
+        line-height: 1.55;
     }
 
     .experience-project-actions {
         gap: 10px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
 
     .experience-project-proof div {
         grid-template-columns: 1fr;
         gap: 5px;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    .experience-project-proof dt {
+        font-size: 0.62rem;
+    }
+
+    .experience-project-proof dd {
+        font-size: 0.8rem;
     }
 
     .experience-project-button {
@@ -1842,15 +1922,16 @@
 
     .experience-project-preview-frame {
         min-height: 0;
-        padding: 10px;
-        border-radius: 16px;
+        padding: 7px;
+        border-radius: 12px;
     }
 
     .experience-project-preview-screen {
         height: auto;
-        aspect-ratio: 4 / 4.35;
-        padding: 8px;
-        border-radius: 12px;
+        aspect-ratio: 16 / 10;
+        max-height: 250px;
+        padding: 6px;
+        border-radius: 10px;
     }
 
     .experience-project-preview-image {
@@ -1859,8 +1940,8 @@
     }
 
     .experience-marquee-block {
-        padding: 20px;
-        border-radius: 24px;
+        padding: 16px;
+        border-radius: 16px;
     }
 
     .experience-marquee-pill {
@@ -1871,5 +1952,28 @@
     .experience-marquee-mark--wide {
         width: 64px;
         flex-basis: 64px;
+    }
+}
+
+@media (max-width: 420px) {
+    .experience-projects {
+        gap: 18px;
+    }
+
+    .experience-project-card {
+        padding: 10px;
+    }
+
+    .experience-project-preview-screen {
+        aspect-ratio: 16 / 9;
+        max-height: 205px;
+    }
+
+    .experience-project-tags {
+        gap: 6px;
+    }
+
+    .experience-project-tags li {
+        padding: 6px 8px;
     }
 }
