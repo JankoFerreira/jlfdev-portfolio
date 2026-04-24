@@ -851,7 +851,7 @@
 
     .jlf-about-signals-stack {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         position: static;
         height: auto;
         gap: 8px;
@@ -871,6 +871,14 @@
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         transform: none !important;
         transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .jlf-about-signal:nth-child(1),
+    .jlf-about-signal:nth-child(2),
+    .jlf-about-signal:nth-child(3) {
+        left: auto;
+        right: auto;
+        transform: none !important;
     }
 
     .jlf-about-signal h4 {
@@ -968,8 +976,21 @@
 
     .jlf-about-signal {
         display: block;
-        padding: 10px 11px;
-        text-align: left;
+        padding: 11px 12px;
+        text-align: center;
+    }
+
+    .jlf-about-signal h4 {
+        margin-bottom: 5px;
+        font-size: 0.7rem;
+        letter-spacing: 0.07em;
+    }
+
+    .jlf-about-signal p {
+        max-width: 32ch;
+        margin-inline: auto;
+        font-size: 0.68rem;
+        line-height: 1.34;
     }
 
     .jlf-about-tag {
