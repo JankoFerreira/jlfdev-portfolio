@@ -802,7 +802,7 @@
 
 @media (max-width: 860px) {
     .jlf-about-section {
-        padding: 84px 16px 72px;
+        padding: 76px 16px 64px;
     }
 
     .jlf-about-grid {
@@ -818,16 +818,24 @@
 
     .jlf-about-card {
         min-height: auto;
-        padding: 22px;
-        border-radius: 24px;
+        padding: 20px;
+        border-radius: 18px;
+        transform: none;
+    }
+
+    .jlf-about-card--snapshot {
+        overflow: hidden;
     }
 
     .jlf-about-card--portrait {
-        min-height: 420px;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 4 / 5;
     }
 
     .jlf-about-mindset-media {
-        min-height: 280px;
+        min-height: 0;
+        aspect-ratio: 4 / 3.7;
     }
 
     .jlf-about-mindset-media img {
@@ -851,7 +859,8 @@
         right: auto;
         width: 100%;
         min-height: 0;
-        padding: 10px 12px;
+        padding: 12px;
+        border-radius: 12px;
         transform: none !important;
     }
 
@@ -866,30 +875,81 @@
 }
 
 @media (max-width: 560px) {
+    .jlf-about-section {
+        padding: 66px 14px 58px;
+    }
+
+    .mission-section,
+    .jlf-about-section,
+    .experience-section,
+    .contact-section,
+    .portfolio-journey,
+    .portfolio-projects {
+        content-visibility: visible;
+        contain-intrinsic-size: none;
+    }
+
     .jlf-about-card {
-        padding: 20px;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .jlf-about-card:hover,
+    .jlf-about-card:focus-within,
+    .jlf-about-signal:hover,
+    .jlf-about-signal:focus {
+        transform: none;
     }
 
     .jlf-about-identity-title {
-        font-size: clamp(2.2rem, 12vw, 3.4rem);
+        font-size: clamp(2rem, 10.8vw, 3rem);
+        line-height: 0.96;
     }
 
     .jlf-about-title {
-        font-size: 1.55rem;
+        font-size: 1.36rem;
+        line-height: 1.1;
     }
 
     .jlf-about-card--portrait {
-        min-height: 340px;
+        aspect-ratio: 4 / 4.75;
     }
 
+    .jlf-about-copy {
+        max-width: none;
+        font-size: 0.84rem;
+        line-height: 1.55;
+    }
 
     .jlf-about-tag {
-        padding: 8px 12px;
-        font-size: 0.68rem;
+        padding: 6px 9px;
+        font-size: 0.56rem;
+        letter-spacing: 0.11em;
     }
 
     .jlf-about-snapshot-item {
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .jlf-about-card,
+    .experience-project-card,
+    .experience-marquee-block {
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.06),
+            0 18px 48px rgba(0, 0, 0, 0.32);
+    }
+
+    .experience-project-category {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .experience-project-link {
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -1730,61 +1790,72 @@
 
 @media (max-width: 720px) {
     .experience-section {
-        padding: 104px 18px 92px;
+        padding: 86px 14px 76px;
     }
 
     .experience-section-head {
-        margin-bottom: 34px;
+        margin-bottom: 28px;
     }
 
     .experience-kicker,
     .experience-mini {
-        letter-spacing: 0.2em;
+        letter-spacing: 0.12em;
     }
 
     .experience-project-card {
-        gap: 16px;
-        padding: 16px;
-        border-radius: 22px;
+        gap: 14px;
+        padding: 14px;
+        border-radius: 18px;
+        transform: none;
+    }
+
+    .experience-project-card:hover {
+        transform: none;
     }
 
     .experience-project-meta {
-        gap: 10px;
-        margin-bottom: 18px;
+        gap: 8px;
+        margin-bottom: 14px;
     }
 
     .experience-project-number,
     .experience-project-category,
     .experience-project-tags li {
-        font-size: 0.74rem;
+        font-size: 0.7rem;
+        line-height: 1.35;
     }
 
     .experience-project-actions {
-        gap: 14px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 16px;
     }
 
     .experience-project-proof div {
         grid-template-columns: 1fr;
+        gap: 5px;
     }
 
     .experience-project-button {
         width: 100%;
+        min-height: 42px;
     }
 
     .experience-project-preview-frame {
-        min-height: 388px;
+        min-height: 0;
         padding: 10px;
-        border-radius: 20px;
+        border-radius: 16px;
     }
 
     .experience-project-preview-screen {
-        height: 346px;
+        height: auto;
+        aspect-ratio: 4 / 4.35;
         padding: 8px;
+        border-radius: 12px;
     }
 
     .experience-project-preview-image {
         min-height: 0;
+        border-radius: 10px;
     }
 
     .experience-marquee-block {
