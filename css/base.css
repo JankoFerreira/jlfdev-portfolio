@@ -700,6 +700,36 @@ body.menu-open {
     }
 }
 
+@media (max-width: 700px), (pointer: coarse) {
+    :root {
+        --noise-opacity: 0.035;
+    }
+
+    .cover-layer__mesh {
+        filter: blur(58px) saturate(108%);
+        will-change: auto;
+    }
+
+    .flow-ribbon,
+    .blob {
+        will-change: auto;
+    }
+
+    .flow-ribbon {
+        filter: blur(18px) saturate(116%);
+    }
+
+    .cover-layer__noise {
+        animation: none;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .glass-heading::before,
+    .glass-heading::after {
+        filter: blur(6px);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .flow-ribbon,
     .cover-layer__noise,

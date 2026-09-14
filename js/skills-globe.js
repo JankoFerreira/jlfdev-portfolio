@@ -10,6 +10,7 @@ const SKILLS_GLOBE_DRAG_INERTIA = 0.00045;
 const SKILLS_GLOBE_IDLE_SPIN = 0.004;
 const SKILLS_GLOBE_INERTIA_DAMPING = 0.965;
 const SKILLS_GLOBE_MAX_ROTATION_X = 1.05;
+const SKILLS_GLOBE_IDLE_AUTOROTATE_MS = 6500;
 const SKILLS_GLOBE_GLOW_COLORS = [
     "86, 231, 255",
     "143, 107, 255",
@@ -104,6 +105,11 @@ function initSkillsGlobe(config) {
         return null;
     }
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const targetFrameMs = isCoarsePointer ? 66 : 33;
+    const idleSpin = isCoarsePointer ? SKILLS_GLOBE_IDLE_SPIN * 0.55 : SKILLS_GLOBE_IDLE_SPIN;
+
     container.innerHTML = buildSkillsGlobeMarkup(options.hintText);
 
     const root = container.querySelector(".skills-globe-component");
@@ -125,7 +131,9 @@ function initSkillsGlobe(config) {
         frameId: null,
         resizeFrameId: 0,
         isInViewport: true,
-        isDocumentVisible: !document.hidden
+        isDocumentVisible: !document.hidden,
+        lastDrawTime: 0,
+        idleUntil: reducedMotion ? 0 : performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS
     };
 
     options.skills.forEach((skill, index) => {
@@ -183,15 +191,34 @@ function initSkillsGlobe(config) {
         });
     }
 
-    function animate() {
+    function shouldKeepAnimating(time) {
+        return state.isDragging ||
+            Math.abs(state.velocityX) > 0.00004 ||
+            Math.abs(state.velocityY) > 0.00004 ||
+            (options.autoRotate && time < state.idleUntil);
+    }
+
+    function animate(time) {
         if (!state.isInViewport || !state.isDocumentVisible) {
             state.frameId = null;
             return;
         }
 
+        if (!shouldKeepAnimating(time)) {
+            state.velocityX = 0;
+            state.velocityY = 0;
+            state.frameId = null;
+            return;
+        }
+
+        if (time - state.lastDrawTime < targetFrameMs) {
+            state.frameId = window.requestAnimationFrame(animate);
+            return;
+        }
+
         if (!state.isDragging) {
-            if (options.autoRotate) {
-                state.rotationY += SKILLS_GLOBE_IDLE_SPIN;
+            if (options.autoRotate && time < state.idleUntil) {
+                state.rotationY += idleSpin;
             }
 
             state.rotationX = clampSkillsGlobeRotationX(state.rotationX + state.velocityX);
@@ -201,6 +228,7 @@ function initSkillsGlobe(config) {
         }
 
         render();
+        state.lastDrawTime = time;
         state.frameId = window.requestAnimationFrame(animate);
     }
 
@@ -223,6 +251,7 @@ function initSkillsGlobe(config) {
 
     function onPointerDown(event) {
         state.isDragging = true;
+        state.idleUntil = performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS;
         state.velocityX *= 0.35;
         state.velocityY *= 0.35;
         state.lastPointerX = event.clientX;
@@ -233,6 +262,8 @@ function initSkillsGlobe(config) {
         if (globe.setPointerCapture) {
             globe.setPointerCapture(event.pointerId);
         }
+
+        ensureAnimationFrame();
     }
 
     function onPointerMove(event) {
@@ -262,12 +293,18 @@ function initSkillsGlobe(config) {
 
     function onPointerUp(event) {
         state.isDragging = false;
+        state.idleUntil = performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS;
         globe.classList.remove("is-dragging");
         globeWrap.classList.remove("is-dragging");
 
         if (event && globe.releasePointerCapture && globe.hasPointerCapture && globe.hasPointerCapture(event.pointerId)) {
             globe.releasePointerCapture(event.pointerId);
         }
+    }
+
+    function onPointerEnter() {
+        state.idleUntil = performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS;
+        ensureAnimationFrame();
     }
 
     function onVisibilityChange() {
@@ -280,6 +317,7 @@ function initSkillsGlobe(config) {
             return;
         }
 
+        state.idleUntil = performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS;
         ensureAnimationFrame();
     }
 
@@ -314,6 +352,7 @@ function initSkillsGlobe(config) {
     }
 
     globe.addEventListener("pointerdown", onPointerDown);
+    globe.addEventListener("pointerenter", onPointerEnter, { passive: true });
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("pointercancel", onPointerUp);
@@ -327,6 +366,7 @@ function initSkillsGlobe(config) {
     return {
         destroy() {
             globe.removeEventListener("pointerdown", onPointerDown);
+            globe.removeEventListener("pointerenter", onPointerEnter);
             window.removeEventListener("pointermove", onPointerMove);
             window.removeEventListener("pointerup", onPointerUp);
             window.removeEventListener("pointercancel", onPointerUp);

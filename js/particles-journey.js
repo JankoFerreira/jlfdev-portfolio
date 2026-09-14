@@ -7,6 +7,7 @@ function createParticleField(config) {
     }
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
 
     if (reducedMotionQuery.matches) {
         return null;
@@ -24,11 +25,15 @@ function createParticleField(config) {
         wrapperRect: null,
         pendingPointerEvent: null,
         isVisible: !document.hidden,
-        isInViewport: true
+        isInViewport: true,
+        lastDrawTime: 0
     };
     const maxDistance = config.maxDistance ?? 120;
     const maxDistanceSq = maxDistance * maxDistance;
     const pointRadius = config.pointRadius ?? 1.8;
+    const isCoarsePointer = coarsePointerQuery.matches;
+    const targetFrameMs = isCoarsePointer ? 45 : 33;
+    const maxConnectionsPerPoint = isCoarsePointer ? 2 : 3;
 
     function rand(min, max) {
         return Math.random() * (max - min) + min;
@@ -37,8 +42,8 @@ function createParticleField(config) {
     function buildPoints() {
         const area = Math.max(1, state.width * state.height);
         const desiredCount = Math.max(
-            config.minCount ?? 18,
-            Math.floor(area / (config.areaPerPoint ?? 22000))
+            isCoarsePointer ? Math.min(config.minCount ?? 18, 12) : (config.minCount ?? 18),
+            Math.floor(area / (isCoarsePointer ? (config.mobileAreaPerPoint ?? 42000) : (config.areaPerPoint ?? 22000)))
         );
 
         state.points = Array.from({ length: desiredCount }, () => ({
@@ -96,6 +101,8 @@ function createParticleField(config) {
         }
 
         for (let i = 0; i < state.points.length; i += 1) {
+            let connections = 0;
+
             for (let j = i + 1; j < state.points.length; j += 1) {
                 const dx = state.points[i].x - state.points[j].x;
                 const dy = state.points[i].y - state.points[j].y;
@@ -112,17 +119,26 @@ function createParticleField(config) {
                 ctx.moveTo(state.points[i].x, state.points[i].y);
                 ctx.lineTo(state.points[j].x, state.points[j].y);
                 ctx.stroke();
+                connections += 1;
+
+                if (connections >= maxConnectionsPerPoint) {
+                    break;
+                }
             }
         }
     }
 
-    function animate() {
+    function animate(time) {
         if (!state.isVisible || !state.isInViewport) {
             state.frameId = 0;
             return;
         }
 
-        renderFrame();
+        if (time - state.lastDrawTime >= targetFrameMs) {
+            renderFrame();
+            state.lastDrawTime = time;
+        }
+
         state.frameId = window.requestAnimationFrame(animate);
     }
 
@@ -141,6 +157,7 @@ function createParticleField(config) {
 
         window.cancelAnimationFrame(state.frameId);
         state.frameId = 0;
+        state.lastDrawTime = 0;
     }
 
     function handlePointerMove(event) {

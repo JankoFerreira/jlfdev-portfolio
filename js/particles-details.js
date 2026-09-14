@@ -4,7 +4,15 @@
     const section = document.querySelector(".details-section");
     if (!canvas || !section) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
     const ctx = canvas.getContext("2d");
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const targetFrameMs = isCoarsePointer ? 45 : 33;
+    const maxDistance = isCoarsePointer ? 92 : 110;
+    const maxDistanceSq = maxDistance * maxDistance;
+    const maxConnectionsPerPoint = isCoarsePointer ? 2 : 3;
     const mouse = { x: null, y: null, radius: 140 };
     const state = {
         width: 0,
@@ -16,7 +24,8 @@
         sectionRect: null,
         pendingPointerEvent: null,
         isVisible: !document.hidden,
-        isInViewport: true
+        isInViewport: true,
+        lastDrawTime: 0
     };
 
     function resize() {
@@ -31,8 +40,8 @@
         canvas.style.height = `${state.height}px`;
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-        const areaPerPoint = window.innerWidth < 700 ? 22000 : 12000;
-        const count = Math.max(18, Math.floor((state.width * state.height) / areaPerPoint));
+        const areaPerPoint = isCoarsePointer || window.innerWidth < 700 ? 36000 : 18000;
+        const count = Math.max(isCoarsePointer ? 12 : 16, Math.floor((state.width * state.height) / areaPerPoint));
         state.points = Array.from({ length: count }, () => ({
             x: Math.random() * state.width,
             y: Math.random() * state.height,
@@ -116,30 +125,42 @@
 
         // Connect close particles to keep the background looking structured.
         for (let i = 0; i < state.points.length; i++) {
+            let connections = 0;
+
             for (let j = i + 1; j < state.points.length; j++) {
                 const dx = state.points[i].x - state.points[j].x;
                 const dy = state.points[i].y - state.points[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+                const distSq = dx * dx + dy * dy;
 
-                if (dist < 120) {
-                    ctx.strokeStyle = `rgba(0,188,212,${1 - dist / 120})`;
+                if (distSq < maxDistanceSq) {
+                    const dist = Math.sqrt(distSq);
+                    ctx.strokeStyle = `rgba(0,188,212,${1 - dist / maxDistance})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(state.points[i].x, state.points[i].y);
                     ctx.lineTo(state.points[j].x, state.points[j].y);
                     ctx.stroke();
+                    connections += 1;
+
+                    if (connections >= maxConnectionsPerPoint) {
+                        break;
+                    }
                 }
             }
         }
     }
 
-    function animate() {
+    function animate(time) {
         if (!state.isVisible || !state.isInViewport) {
             state.frameId = 0;
             return;
         }
 
-        renderFrame();
+        if (time - state.lastDrawTime >= targetFrameMs) {
+            renderFrame();
+            state.lastDrawTime = time;
+        }
+
         state.frameId = requestAnimationFrame(animate);
     }
 
@@ -153,6 +174,7 @@
         if (!state.frameId) return;
         cancelAnimationFrame(state.frameId);
         state.frameId = 0;
+        state.lastDrawTime = 0;
     }
 
     if ("IntersectionObserver" in window) {
