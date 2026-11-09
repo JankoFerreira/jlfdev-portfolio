@@ -18,10 +18,13 @@
     uniform float aspect;
     uniform float separation;
     uniform float signal;
+    uniform vec3 voyage;
     varying vec3 surface;
 
     void main() {
       vec3 p = position;
+      p.xy -= voyage.xy;
+      p *= voyage.z;
       p.z += separation * component.x;
       float cz = cos(angles.x), sz = sin(angles.x);
       float cx = cos(angles.y), sx = sin(angles.y);
@@ -174,7 +177,7 @@
     gl.enableVertexAttribArray(location);
     gl.vertexAttribPointer(location, size, gl.FLOAT, false, 32, offset);
   }
-  const uniforms = Object.fromEntries(["angles", "aspect", "separation", "signal"].map(name => [name, gl.getUniformLocation(program, name)]));
+  const uniforms = Object.fromEntries(["angles", "aspect", "separation", "signal", "voyage"].map(name => [name, gl.getUniformLocation(program, name)]));
   const views = {
     board: { yaw: -0.28, tilt: 0.68, separation: 0, signal: 0, text: "A custom circuit board built around my initials." },
     layers: { yaw: -0.52, tilt: 0.92, separation: 0.61, signal: 0, text: "An exploded view of the base, routing and raised initials." },
@@ -186,6 +189,32 @@
   let frame = 0;
   let lost = false;
 
+  let travel = 0;
+  const figure = stage.closest("figure");
+  stage.classList.add("voyage-stage");
+  function scrollBoard() {
+    const rect = figure.getBoundingClientRect();
+    const enter = motion.matches ? 0 : Math.min(1, Math.max(0, scrollY / (innerHeight * .85)));
+    const ease = enter * enter * (3 - 2 * enter);
+    stage.style.left = (rect.left * (1 - ease)) + "px";
+    stage.style.top = (rect.top * (1 - ease)) + "px";
+    stage.style.width = (rect.width + (innerWidth - rect.width) * ease) + "px";
+    stage.style.height = (rect.width / 1.35 + (innerHeight - rect.width / 1.35) * ease) + "px";
+    travel = Math.max(0, scrollY / innerHeight - .85);
+    target = { ...views.board, yaw: -.28 + ease * .18 + Math.sin(travel * .45) * .12, tilt: .68 + ease * .5 };
+    gl.uniform3f(uniforms.voyage, Math.sin(travel * .6) * 1.5 * ease, Math.cos(travel * .4) * .65 * ease, 1 + ease * 2.6);
+    rootStyle(ease);
+    requestDraw();
+  }
+  function rootStyle(value) {
+    document.documentElement.style.setProperty("--entered", value);
+  }
+  let scrollFrame = 0;
+  window.addEventListener("scroll", () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => { scrollFrame = 0; scrollBoard(); });
+  }, { passive: true });
+  window.addEventListener("resize", scrollBoard);
   function draw() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.uniform2f(uniforms.angles, current.yaw, current.tilt);
@@ -221,8 +250,9 @@
     const { width, height } = canvas.getBoundingClientRect();
     if (!width || !height) return;
     const ratio = Math.min(devicePixelRatio || 1, 1.4);
-    canvas.width = Math.round(width * ratio);
-    canvas.height = Math.round(height * ratio);
+    const renderWidth = Math.min(1200, Math.round(innerWidth));
+    const renderHeight = Math.round(renderWidth * innerHeight / innerWidth);
+    if (canvas.width !== renderWidth || canvas.height !== renderHeight) { canvas.width = renderWidth; canvas.height = renderHeight; }
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform1f(uniforms.aspect, width / height);
     draw();
@@ -265,5 +295,9 @@
   });
 
   new ResizeObserver(resize).observe(stage);
+  gl.uniform3f(uniforms.voyage, 0, 0, 1);
+  scrollBoard();
   resize();
 })();
+
+
