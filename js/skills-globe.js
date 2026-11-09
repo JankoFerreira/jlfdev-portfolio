@@ -76,7 +76,7 @@ function buildSkillsGlobeMarkup(hintText) {
         <div class="skills-globe-component">
             <div class="sg-globe-wrap">
                 <div class="sg-globe-hint">${hintText}</div>
-                <div class="sg-globe" aria-label="Interactive skills globe" role="img">
+                <div class="sg-globe" aria-label="Interactive skills globe. Use arrow keys to rotate." role="img" tabindex="0">
                     <div class="sg-globe-shadow"></div>
                     <div class="sg-globe-core"></div>
                     <div class="sg-globe-ring sg-horizontal sg-ring-1"></div>
@@ -192,10 +192,10 @@ function initSkillsGlobe(config) {
     }
 
     function shouldKeepAnimating(time) {
-        return state.isDragging ||
+        return !state.isDragging && (
             Math.abs(state.velocityX) > 0.00004 ||
             Math.abs(state.velocityY) > 0.00004 ||
-            (options.autoRotate && time < state.idleUntil);
+            (options.autoRotate && time < state.idleUntil));
     }
 
     function animate(time) {
@@ -263,7 +263,7 @@ function initSkillsGlobe(config) {
             globe.setPointerCapture(event.pointerId);
         }
 
-        ensureAnimationFrame();
+        stopAnimationFrame();
     }
 
     function onPointerMove(event) {
@@ -283,8 +283,8 @@ function initSkillsGlobe(config) {
         const deltaY = pointerEvent.clientY - state.lastPointerY;
         state.rotationY -= deltaX * SKILLS_GLOBE_DRAG_ROTATION_SPEED;
         state.rotationX = clampSkillsGlobeRotationX(state.rotationX - deltaY * SKILLS_GLOBE_DRAG_ROTATION_SPEED);
-        state.velocityY = -deltaX * SKILLS_GLOBE_DRAG_INERTIA;
-        state.velocityX = -deltaY * SKILLS_GLOBE_DRAG_INERTIA;
+            state.velocityY = reducedMotion ? 0 : -deltaX * SKILLS_GLOBE_DRAG_INERTIA;
+            state.velocityX = reducedMotion ? 0 : -deltaY * SKILLS_GLOBE_DRAG_INERTIA;
         state.lastPointerX = pointerEvent.clientX;
         state.lastPointerY = pointerEvent.clientY;
         render();
@@ -292,6 +292,7 @@ function initSkillsGlobe(config) {
     }
 
     function onPointerUp(event) {
+        if (!state.isDragging) return;
         state.isDragging = false;
         state.idleUntil = performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS;
         globe.classList.remove("is-dragging");
@@ -300,9 +301,27 @@ function initSkillsGlobe(config) {
         if (event && globe.releasePointerCapture && globe.hasPointerCapture && globe.hasPointerCapture(event.pointerId)) {
             globe.releasePointerCapture(event.pointerId);
         }
+        if (shouldKeepAnimating(performance.now())) ensureAnimationFrame();
+    }
+
+    function onKeyDown(event) {
+        const step = 0.18;
+        switch (event.key) {
+            case "ArrowLeft": state.rotationY += step; break;
+            case "ArrowRight": state.rotationY -= step; break;
+            case "ArrowUp": state.rotationX = clampSkillsGlobeRotationX(state.rotationX + step); break;
+            case "ArrowDown": state.rotationX = clampSkillsGlobeRotationX(state.rotationX - step); break;
+            default: return;
+        }
+        event.preventDefault();
+        state.velocityX = 0;
+        state.velocityY = 0;
+        stopAnimationFrame();
+        render();
     }
 
     function onPointerEnter() {
+        if (!options.autoRotate || reducedMotion) return;
         state.idleUntil = performance.now() + SKILLS_GLOBE_IDLE_AUTOROTATE_MS;
         ensureAnimationFrame();
     }
@@ -352,6 +371,7 @@ function initSkillsGlobe(config) {
     }
 
     globe.addEventListener("pointerdown", onPointerDown);
+    globe.addEventListener("keydown", onKeyDown);
     globe.addEventListener("pointerenter", onPointerEnter, { passive: true });
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerup", onPointerUp);
@@ -366,6 +386,7 @@ function initSkillsGlobe(config) {
     return {
         destroy() {
             globe.removeEventListener("pointerdown", onPointerDown);
+            globe.removeEventListener("keydown", onKeyDown);
             globe.removeEventListener("pointerenter", onPointerEnter);
             window.removeEventListener("pointermove", onPointerMove);
             window.removeEventListener("pointerup", onPointerUp);
@@ -384,6 +405,7 @@ function initSkillsGlobe(config) {
 document.addEventListener("DOMContentLoaded", () => {
     initSkillsGlobe({
         container: "#skillsGlobeMount",
+        autoRotate: false,
         hintText: "Drag to explore",
         skills: [
             { name: "HTML", icon: "media/html5.svg" },
