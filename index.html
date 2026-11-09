@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Janko Ferreira</title>
-    <meta name="description" content="Janko Ferreira is a junior full-stack web developer building clean, reliable websites and business systems with HTML, CSS, JavaScript, Python, C#, and SQL.">
+    <title>Janko Ferreira | Full-Stack Developer</title>
+    <meta name="description" content="Janko Ferreira is a Pretoria-based full-stack developer building inventory and registration systems, internal tools, and interactive websites.">
     <meta name="author" content="Janko Ferreira">
-    <meta property="og:title" content="Portfolio | Janko Ferreira">
-    <meta property="og:description" content="Junior full-stack web developer building practical websites, business tools, and digital systems.">
+    <meta property="og:title" content="Janko Ferreira | Full-Stack Developer">
+    <meta property="og:description" content="Explore NXW Studios, Ferion Atlas, and more of Janko Ferreira’s software projects.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="media/CVphoto.webp">
+    <meta property="og:image" content="https://jlfdev.co.za/media/CVphoto.webp">
     <meta property="og:url" content="https://jlfdev.co.za/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#043b5f">
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/skills-globe.css">
     <link rel="stylesheet" href="css/sections.css">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/highlights.css">
 </head>
 <body>
     <!-- Intro loader -->
@@ -98,12 +99,13 @@
     <nav class="nav-links">
         <a href="#home" class="active-link">Home</a>
         <a href="#about">About</a>
+        <a href="#work">Work</a>
         <a href="portfolio.html">Journey</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </nav>
 
-    <a href="media/JankoFerreiraCV.pdf" class="nav-cta" download>Download CV</a>
+    <a href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request" class="nav-cta">Request CV</a>
 
     <button
         class="menu-btn"
@@ -120,68 +122,77 @@
 <div id="sideMenu" class="side-menu" aria-hidden="true">
     <a href="#home">Home</a>
     <a href="#about">About</a>
-    <a href="portfolio.html">Journey</a>
+    <a href="#work">Work</a>
+        <a href="portfolio.html">Journey</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-    <a href="media/JankoFerreiraCV.pdf" download>Download CV</a>
+    <a href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request">Request CV</a>
     <button type="button" class="close-btn" aria-label="Close navigation menu" data-menu-close>&times;</button>
 </div>
 
-<!-- Hero -->
-<section id="home" class="hero">
-    <div class="hero-content">
-        <p class="hero-badge hero-reveal hero-reveal--1 hero-word-reveal">Pretoria-based developer crafting polished websites and practical digital systems</p>
-
-        <h1 class="hero-name">
-            <span class="hero-name-intro hero-reveal hero-reveal--2 hero-word-reveal">I am Janko Ferreira,</span>
-            <span class="hero-roles-line hero-reveal hero-reveal--3">
-                <span class="hero-roles-prefix hero-word-reveal">I am</span> <span class="hero-role-article hero-word-reveal">a</span>
-                <span
-                    class="highlight name-glow hero-roles-rotator"
-                    data-roles='["Junior Web Developer","Full Stack Developer","AI-Optimized Web Developer","Digital Solutions Builder"]'
-                    data-rotation-delay="2400"
-                    aria-live="polite"
-                >
-                    <span class="hero-roles-word">Junior Web Developer</span>
-                </span>
-            </span>
-        </h1>
-
-        <p class="hero-description hero-reveal hero-reveal--4 hero-word-reveal">
-            I design and build business websites, internal tools, and practical digital systems
-            that combine clean interfaces with real operational problem solving.
-        </p>
-
-        <div class="hero-buttons hero-reveal hero-reveal--5">
-            <a href="#contact" class="hero-btn hero-btn-primary">
-                Hire Me
-                <span class="btn-icon" aria-hidden="true">&rarr;</span>
-            </a>
-            <a href="media/JankoFerreiraCV.pdf" class="hero-btn hero-btn-secondary" download>
-                Download CV
-                <span class="btn-icon" aria-hidden="true">&darr;</span>
-            </a>
-            <a href="portfolio.html" class="hero-btn hero-btn-secondary">
-                View Projects
-                <span class="btn-icon" aria-hidden="true">&rarr;</span>
-            </a>
+<section id="home" class="hero portfolio-hero" aria-labelledby="hero-title">
+    <div class="hero-content portfolio-hero__copy">
+        <p class="portfolio-eyebrow"><span class="portfolio-signal" aria-hidden="true"></span> Open to software development roles</p>
+        <h1 id="hero-title">Janko Ferreira<span>Full-stack developer</span></h1>
+        <p class="portfolio-hero__description">I build software for teams that need better tools, from inventory and registration systems to interactive websites.</p>
+        <div class="portfolio-hero__actions">
+            <a href="#work" class="hero-btn hero-btn-primary">Explore my work <span aria-hidden="true">↘</span></a>
+            <a href="#contact" class="hero-btn hero-btn-secondary">Get in touch <span aria-hidden="true">↗</span></a>
         </div>
-
-        <div class="hero-availability hero-reveal hero-reveal--6" aria-label="Current role and availability">
-            <span>Currently: Data &amp; Systems Developer</span>
-            <span>Open to junior/full-stack web roles</span>
-            <span>Pretoria / Remote</span>
-        </div>
-
-        <div class="hero-socials hero-reveal hero-reveal--6" aria-label="Professional links">
-            <a href="https://github.com/JankoFerreira" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="mailto:Janko.Ferreira@gmail.com?subject=Portfolio%20Enquiry">Email</a>
-        </div>
-
+        <p class="portfolio-hero__meta">Pretoria, South Africa <span aria-hidden="true">/</span> React · TypeScript · Python · SQL</p>
     </div>
 
-    <div class="scroll-indicator">
-        <span></span>
+    <figure class="portfolio-scene">
+        <div class="portfolio-scene__stage" aria-hidden="true">
+            <div class="portfolio-scene__orbit"></div>
+            <svg class="portfolio-scene__fallback" viewBox="0 0 320 320" fill="none">
+                <defs><linearGradient id="scene-gradient" x1="25" y1="50" x2="280" y2="270" gradientUnits="userSpaceOnUse"><stop stop-color="#82f4ff"/><stop offset=".5" stop-color="#5367d9"/><stop offset="1" stop-color="#af70ff"/></linearGradient></defs>
+                <path d="M159 54C213 26 287 69 276 126C265 189 155 243 91 220C33 199 28 143 68 109C110 72 202 96 236 153C270 210 238 272 185 270C121 267 84 202 94 136C101 91 126 68 159 54Z" stroke="#151a45" stroke-width="32"/>
+                <path d="M159 54C213 26 287 69 276 126C265 189 155 243 91 220C33 199 28 143 68 109C110 72 202 96 236 153C270 210 238 272 185 270C121 267 84 202 94 136C101 91 126 68 159 54Z" stroke="url(#scene-gradient)" stroke-width="18"/>
+                <path d="M159 54C213 26 287 69 276 126C265 189 155 243 91 220C33 199 28 143 68 109C110 72 202 96 236 153C270 210 238 272 185 270C121 267 84 202 94 136C101 91 126 68 159 54Z" stroke="#080f25" stroke-width="2" stroke-dasharray="2 5"/>
+            </svg>
+            <canvas id="portfolio-scene-canvas"></canvas>
+        </div>
+        <figcaption>
+            <span><strong>01 /</strong> Procedural torus knot</span>
+            <button type="button" data-scene-toggle hidden>Pause motion</button>
+        </figcaption>
+    </figure>
+
+    <a class="portfolio-hero__scroll" href="#work">Selected work <span aria-hidden="true">↓</span></a>
+</section>
+
+<section id="work" class="portfolio-work" aria-labelledby="work-title">
+    <header class="portfolio-work__heading">
+        <p class="portfolio-eyebrow">01 / Selected work</p>
+        <h2 id="work-title">From 3D interfaces<br>to operational software.</h2>
+        <p>What I built, the decisions behind it, and where each project stands.</p>
+    </header>
+
+    <div class="portfolio-work__grid">
+        <article class="portfolio-project portfolio-project--studio">
+            <div class="portfolio-project__visual" aria-hidden="true"><span class="portfolio-project__mark">NXW<span>.</span></span><span class="portfolio-project__visual-label">INTERACTION DESIGN / 01</span></div>
+            <div class="portfolio-project__body">
+                <p class="portfolio-eyebrow"><span class="portfolio-signal" aria-hidden="true"></span> Live website</p>
+                <h3>NXW Studios</h3>
+                <p>I designed and built the studio website around a custom 3D scene, with shader-driven geometry and scroll-linked transitions between sections.</p>
+                <p>I scaled back scene effects on small screens and kept a fallback for devices without WebGL.</p>
+                <ul class="portfolio-project__stack" aria-label="Technology stack"><li>React</li><li>Three.js</li><li>WebGL</li><li>GSAP</li></ul>
+                <a href="https://nxwbstudios.co.za/" target="_blank" rel="noopener noreferrer">Visit NXW Studios <span aria-hidden="true">↗</span></a>
+            </div>
+        </article>
+
+        <article class="portfolio-project portfolio-project--atlas">
+            <div class="portfolio-project__visual" aria-hidden="true"><span class="portfolio-project__mark">Atlas<span>.</span></span><span class="portfolio-project__visual-label">ASSET & INVENTORY SYSTEM / 02</span></div>
+            <div class="portfolio-project__body">
+                <p class="portfolio-eyebrow"><span class="portfolio-signal" aria-hidden="true"></span> Pilot development</p>
+                <h3>Ferion Atlas</h3>
+                <p>I’m building a multi-tenant asset and inventory platform for office teams that need to track equipment and stock across locations.</p>
+                <p>Asset records track individual items and their movement. Inventory workflows track quantities, with role-based access and an audit trail.</p>
+                <ul class="portfolio-project__stack" aria-label="Technology stack"><li>React</li><li>TypeScript</li><li>FastAPI</li><li>PostgreSQL</li></ul>
+                <a href="portfolio.html#atlas">Read the project details <span aria-hidden="true">↗</span></a>
+            </div>
+        </article>
     </div>
 </section>
 
@@ -214,7 +225,7 @@
                     <span>JANKO</span>
                     <span>FERREIRA</span>
                 </h2>
-                <p class="jlf-about-identity-subtext">AI-OPTIMIZED WEB DEVELOPER</p>
+                <p class="jlf-about-identity-subtext">FULL-STACK DEVELOPER</p>
             </article>
 
             <article class="jlf-about-card jlf-about-card--snapshot">
@@ -230,7 +241,7 @@
 
                     <article class="jlf-about-signal jlf-about-signal--education" tabindex="0">
                         <h4>EDUCATION</h4>
-                        <p>Currently completing a Higher Certificate in Software Development at Eduvos, while further strengthening my skills through a Python Bootcamp on Udemy.</p>
+                        <p>Graduated from Eduvos in 2026 with a Higher Certificate in Information Systems (Software Development).</p>
                     </article>
 
                     <article class="jlf-about-signal jlf-about-signal--growth" tabindex="0">
@@ -278,14 +289,14 @@
             <article class="jlf-about-card jlf-about-card--focus">
                 <p class="jlf-about-label">CURRENT FOCUS</p>
                 <h3 class="jlf-about-title">Current Focus</h3>
-                <p class="jlf-about-focus-subtitle">AI-Optimized Digital Solutions.</p>
+                <p class="jlf-about-focus-subtitle">Web applications and workflow automation.</p>
                 <span class="jlf-about-accent" aria-hidden="true"></span>
 
                 <p class="jlf-about-copy">
-                    I design and build AI-optimized websites and systems that help businesses get found, operate efficiently, and scale with modern technology.
+                    As a Data &amp; Systems Administrator, I work with the people who use our internal tools and turn their workflows into software requirements.
                 </p>
                 <p class="jlf-about-copy jlf-about-copy--compact">
-                    From clean front-end experiences to powerful backend systems and automation, I focus on building solutions that are both practical and high-performing.
+                    My work covers call centre workflows, reporting, and registration, alongside full-stack application development.
                 </p>
 
                 <div class="jlf-about-focus-reel" aria-label="Technology skills">
@@ -377,7 +388,7 @@
     <div class="experience-content">
         <div class="experience-section-head">
             <p class="experience-kicker">My Experience</p>
-            <h2 class="glass-heading">Featured Website Projects</h2>
+            <h2 class="glass-heading">More Website Projects</h2>
             <p class="experience-intro">
                 A curated selection of websites presented as mini case studies: what I owned, what I built, and why each project mattered.
             </p>
@@ -676,7 +687,7 @@
     <h2 class="contact-title glass-heading">Let's Work Together</h2>
 
     <p class="contact-subtitle">
-        Looking for a junior/full-stack web developer, or need a polished website or internal tool?
+        Hiring for a full-stack, frontend, or software development role?
         I'm open to roles, freelance work, and practical collaborations.
     </p>
 
@@ -732,20 +743,18 @@
             GitHub
         </a>
 
-        <a href="media/JankoFerreiraCV.pdf" class="connect-btn cv" download>
-            Download CV
+        <a href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request" class="connect-btn cv">
+            Request CV
         </a>
     </div>
 </footer>
 
 <!-- Shared scripts -->
 <script src="js/menu.js" defer></script>
-<script src="js/hero-name-hover.js" defer></script>
-<script src="js/hero-word-reveal.js" defer></script>
-<script src="js/hero-roles.js" defer></script>
 <script src="js/skills-globe.js" defer></script>
 <script src="js/reveal.js" defer></script>
 <script src="js/site-background.js" defer></script>
 <script src="js/main.js" defer></script>
+<script src="js/hero-scene.js" defer></script>
 </body>
 </html>

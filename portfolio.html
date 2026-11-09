@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio | Janko Ferreira</title>
+    <title>Career Journey | Janko Ferreira</title>
     <meta name="description" content="Featured portfolio projects by Janko Ferreira, including business websites, frontend work, and practical web systems built for real clients.">
     <meta name="author" content="Janko Ferreira">
-    <meta property="og:title" content="My Portfolio | Janko Ferreira">
+    <meta property="og:title" content="Career Journey | Janko Ferreira">
     <meta property="og:description" content="Real client websites, frontend work, and practical web systems built by Janko Ferreira.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="media/MyWork2.webp">
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/sections.css">
     <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="stylesheet" href="css/highlights.css">
 </head>
 <body>
     <!-- Shared animated background -->
@@ -68,13 +69,14 @@
 
     <nav class="nav-links">
         <a href="index.html">Home</a>
+        <a href="index.html#work">Work</a>
         <a href="index.html#about">About</a>
         <a href="portfolio.html" class="active-link">Journey</a>
         <a href="index.html#skills">Skills</a>
         <a href="index.html#contact">Contact</a>
     </nav>
 
-    <a href="media/JankoFerreiraCV.pdf" class="nav-cta" download>Download CV</a>
+    <a href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request" class="nav-cta">Request CV</a>
 
     <button
         class="menu-btn"
@@ -90,11 +92,12 @@
 
 <div id="sideMenu" class="side-menu" aria-hidden="true">
     <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
+    <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
     <a href="portfolio.html">Journey</a>
     <a href="index.html#skills">Skills</a>
     <a href="index.html#contact">Contact</a>
-    <a href="media/JankoFerreiraCV.pdf" download>Download CV</a>
+    <a href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request">Request CV</a>
     <button type="button" class="close-btn" aria-label="Close navigation menu" data-menu-close>&times;</button>
 </div>
 
@@ -121,6 +124,20 @@
         </div>
 
         <div class="journey-timeline">
+        <div id="atlas" class="journey-item reveal-left">
+    <div class="journey-card">
+        <div class="journey-date">2026</div>
+        <div class="journey-text">
+            <h2>Ferion Atlas</h2>
+            <p class="journey-sub">Full-stack development · Pilot development</p>
+            <ul>
+                <li>Built a React and TypeScript frontend with a FastAPI backend and PostgreSQL data model.</li>
+                <li>Separated individually tracked assets from quantity-based inventory. Asset workflows cover labels, transfers and loans. Inventory workflows cover purchasing and stock takes.</li>
+                <li>Implemented organisation-scoped roles and audit history so teams can control access and trace changes.</li>
+            </ul>
+        </div>
+    </div>
+</div>
         <div
             class="journey-item reveal-left"
             data-journey-year="2018-2022"
@@ -224,7 +241,7 @@
             class="journey-item reveal-left"
             data-journey-year="2024-Present"
             data-journey-title="Data & Systems Development"
-            data-journey-role="Data & Systems Developer"
+            data-journey-role="Data & Systems Administrator"
             data-journey-stack="AppSheet, VBA, process digitisation"
             data-journey-impact="Developing internal applications and automations that reduce manual admin and improve operational visibility."
             data-journey-status="Current role"
@@ -245,7 +262,7 @@
                     <div class="journey-insight">
                         <div class="journey-insight-label">System Readout</div>
                         <div class="journey-insight-grid">
-                            <span><strong>Role:</strong> Data &amp; Systems Developer</span>
+                            <span><strong>Role:</strong> Data &amp; Systems Administrator</span>
                             <span><strong>Stack:</strong> AppSheet, VBA, process design</span>
                             <span><strong>Impact:</strong> Internal tools that reduce friction and manual overhead.</span>
                         </div>
@@ -272,8 +289,8 @@
 
                     <ul>
                         <li>Actively building and deploying websites for clients while sharpening frontend development, responsive layout, and interaction design.</li>
-                        <li>Designed and coded this personal CV portfolio using HTML, CSS, and JavaScript to demonstrate both visual craft and implementation ability.</li>
-                        <li>Building toward full-stack delivery with Python, FastAPI, SQL, and database-backed web systems.</li>
+                        <li>Built a procedural 3D WebGL scene for this portfolio with custom shaders and pointer-driven motion.</li>
+                        <li>Graduated from Eduvos in 2026 with a Higher Certificate in Information Systems (Software Development).</li>
                     </ul>
 
                     <div class="journey-insight">
@@ -312,8 +329,8 @@
             GitHub
         </a>
 
-        <a href="media/JankoFerreiraCV.pdf" class="connect-btn cv" download>
-            Download CV
+        <a href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request" class="connect-btn cv">
+            Request CV
         </a>
     </div>
 </footer>
