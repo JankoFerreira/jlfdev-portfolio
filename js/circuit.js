@@ -34,7 +34,8 @@
       float perspective = 1.0 - depth * 0.035;
       gl_Position = vec4(plane.x * 0.272 / aspect, (y - 0.22 - separation * 0.26) * 0.272, -depth * 0.10, perspective);
       vec3 active = mix(color, vec3(1.0, 0.59, 0.30), component.y * signal * 0.8);
-      surface = active * (1.0 - signal * 0.45 * (1.0 - component.y));
+      float proximity = max(0.0, 1.0 - length(position.xy - voyage.xy) / 2.1);
+      surface = active * (1.0 - signal * 0.45 * (1.0 - component.y)) + vec3(0.65, 0.35, 0.08) * component.y * proximity;
     }
   `;
   const fragmentSource = `
