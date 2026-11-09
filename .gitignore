@@ -1,4 +1,7 @@
 node_modules/
+dist/
+*.tsbuildinfo
 .vscode/
 tmp/
 hero-aurora-demo/
+app/public/

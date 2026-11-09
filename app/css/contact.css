@@ -1,0 +1,125 @@
+/* ========================= */
+/* CONTACT SECTION */
+/* ========================= */
+
+.contact-section {
+    min-height: 100vh;
+    padding: 120px 20px;
+    background: transparent;
+    color: white;
+    text-align: center;
+}
+
+.contact-title {
+    font-size: 3.5rem;
+    color: #ffffff;
+}
+
+.contact-subtitle {
+    max-width: 520px;
+    margin: 0 auto 50px;
+    color: rgba(223, 241, 255, 0.82);
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 14px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    color: white;
+}
+
+.input-group label {
+    position: absolute;
+    top: 15px;
+    left: 16px;
+    color: rgba(255,255,255,0.6);
+    transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group textarea:focus + label,
+.input-group input:valid + label,
+.input-group textarea:valid + label {
+    top: -12px;
+    font-size: 0.75rem;
+    color: #a8f6ff;
+}
+
+.contact-btn {
+    padding: 14px 40px;
+    background: linear-gradient(135deg, rgba(244, 251, 255, 0.98), rgba(188, 234, 255, 0.94));
+    color: #031120;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ========================= */
+/* CONTACT SEND BUTTON FX */
+/* ========================= */
+
+.contact-btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(86, 231, 255, 0.2);
+}
+
+.contact-btn:hover .btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-btn.sending {
+    transform: scale(0.97);
+    box-shadow: 0 0 20px rgba(0,188,212,0.6);
+}
+
+.contact-btn.sent .btn-arrow {
+    animation: arrowFly 0.5s ease forwards;
+}
+
+@keyframes arrowFly {
+    to {
+        transform: translateX(120px);
+        opacity: 0;
+    }
+}
+
+.contact-btn.sent .btn-text {
+    opacity: 0;
+}
+
+.contact-btn.sent::after {
+    content: "Sent";
+    position: absolute;
+    font-weight: bold;
+    color: white;
+}

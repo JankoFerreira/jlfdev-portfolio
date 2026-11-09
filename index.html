@@ -1,182 +1,20 @@
 <!doctype html>
-<html lang="en-ZA">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Janko Ferreira — Full-Stack Developer</title>
-  <meta name="description" content="Janko Ferreira builds interactive websites and the operational software teams use every day. Based in Pretoria, South Africa.">
-  <meta name="theme-color" content="#f5f2e9">
-  <meta property="og:title" content="Janko Ferreira — Full-Stack Developer">
-  <meta property="og:description" content="Explore NXW Studios, Ferion Atlas, and more software projects.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jlfdev.co.za/">
-  <link rel="canonical" href="https://jlfdev.co.za/">
-  <link rel="icon" href="media/favicon.svg" type="image/svg+xml">
-  <script>
-    try {
-      if (localStorage.getItem("jf-theme") === "dark") document.documentElement.dataset.theme = "dark";
-    } catch {}
-  </script>
-  <link rel="stylesheet" href="css/fieldbook.css?v=2">
-  <link rel="stylesheet" href="css/interaction.css?v=1">
-  <script src="js/interaction.js?v=1" defer></script>
-  <link rel="stylesheet" href="css/skills-globe.css">
-  <script src="js/circuit.js?v=3" defer></script>
-  <script src="js/skills-globe.js?v=2" defer></script>
-<link rel="stylesheet" href="css/immersive.css?v=1"><script src="js/immersive.js?v=1" defer></script></head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header id="page-top" class="site-header wrap" tabindex="-1">
-    <a class="wordmark" href="./" aria-label="Janko Ferreira home"><span>JF</span> Janko Ferreira</a>
-    <nav aria-label="Main navigation">
-      <a href="#work">Work</a><a href="#stack">Tech Globe</a><a href="#journey">Journey</a>
-    </nav>
-    <div class="header-tools">
-      <button class="theme-switch" type="button" aria-label="Dark mode" aria-pressed="false" hidden>
-        <svg class="theme-icon theme-icon--moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 15A8 8 0 0 1 9 4a8.3 8.3 0 1 0 11 11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-        <svg class="theme-icon theme-icon--sun" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        <span class="theme-label">Dark</span>
-      </button>
-      <a class="header-contact" href="#contact">Contact <span aria-hidden="true">↗</span></a>
-    </div>
-  </header>
-
-  <main id="main">
-    <svg class="board-route" aria-hidden="true" focusable="false">
-      <defs><clipPath id="route-window"><rect width="100%" height="0"/></clipPath></defs>
-      <path class="board-route__traces"/>
-      <path class="board-route__traces board-route__power" clip-path="url(#route-window)"/>
-      <g class="board-route__pads"></g>
-    </svg>
-    <section id="home" class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="label"><span class="signal"></span> FULL-STACK DEVELOPER · PRETORIA, ZA</p>
-        <h1 id="hero-title">I build what<br> work <em>runs on.</em></h1>
-        <p class="hero-lede">I’m Janko Ferreira. I build interactive websites and the software behind everyday operations, from camp registrations to asset and stock tracking.</p>
-        <div class="actions">
-          <a class="button button--ink" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
-          <a class="text-link" href="mailto:Janko.Ferreira@gmail.com?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-
-      <figure class="circuit" aria-labelledby="circuit-title">
-        <div class="circuit-top label"><span>JF / CIRCUIT 001</span><span>SCROLL TO ENTER</span></div>
-        <div class="circuit-stage" aria-hidden="true">
-          <svg class="circuit-poster" viewBox="0 0 480 360" fill="none">
-            <path d="M239 56 429 154 239 252 49 154Z" fill="#292e23" stroke="#a6ac8c"/>
-            <path d="M49 154v21l190 100 190-100v-21l-190 98Z" fill="#181b16" stroke="#a6ac8c"/>
-            <path d="m73 153 163-85 166 85-163 84zM92 154l148 73m-92-100 148 73m-92-101 149 74m-108-101 149 73m-35-16-146 75m101-99-148 76m104-100-150 77" stroke="#545b44"/>
-            <path d="M123 149h72v-32m-45 64h66l25-20h83m-53 37v-21h63m-70-67v22h99" stroke="#ee8a56" stroke-width="2"/>
-            <path d="M165 122h56v51h-55v-15h37v-36M243 174v-54h59v14h-41v12h31v14h-31v14" stroke="#414a2f" stroke-width="12" transform="translate(0 12)"/>
-            <path d="M165 122h56v51h-55v-15h37v-36M243 174v-54h59v14h-41v12h31v14h-31v14" stroke="#e2fb8b" stroke-width="8"/>
-            <circle cx="125" cy="149" r="4" fill="#ff9b66"/><circle cx="337" cy="177" r="4" fill="#ff9b66"/><circle cx="364" cy="132" r="4" fill="#ff9b66"/>
-          </svg>
-          <canvas id="circuit-canvas"></canvas>
-          <span class="circuit-coordinate label">25.75° S / 28.19° E</span>
-        </div>
-        <figcaption class="circuit-bottom">
-          <div><h2 id="circuit-title">The JF Circuit</h2><p id="circuit-readout" aria-live="polite">A custom circuit board built around my initials.</p></div>
-          <div class="circuit-controls" role="group" aria-label="Circuit board views" hidden>
-            <button type="button" data-view="board" aria-pressed="true">Board</button>
-            <button type="button" data-view="layers" aria-pressed="false">Layers</button>
-            <button type="button" data-view="signal" aria-pressed="false">Signal</button>
-          </div>
-        </figcaption>
-      </figure>
-    </section>
-
-    <div class="index-strip"><div class="wrap label"><span>01 / SELECTED WORK</span><span>02 / TECH GLOBE</span><span>03 / CONTACT</span></div></div>
-
-    <section id="work" class="work wrap" aria-labelledby="work-title">
-      <header class="section-heading">
-        <p class="label">01 / SELECTED WORK</p>
-        <h2 id="work-title">On the workbench.</h2>
-        <p>From a studio site built around a custom shader to an inventory system built around how an office works.</p>
-      </header>
-      <div class="work-grid">
-        <article class="project project--studio">
-          <div class="project-art studio-art" aria-hidden="true"><span class="art-index label">FIG. 01 / STUDIO SITE</span><div class="studio-orbits"></div><strong>NXW<span>.</span></strong></div>
-          <div class="project-copy">
-            <p class="label"><span class="signal"></span> LIVE WEBSITE</p>
-            <h3>NXW Studios</h3>
-            <p>I designed and built the studio site around a custom WebGL scene, using shaders and scroll-linked transitions to connect its sections.</p>
-            <ul class="tags" aria-label="Technologies"><li>React</li><li>Three.js</li><li>GSAP</li></ul>
-            <a class="text-link" href="https://nxwbstudios.co.za/">Visit NXW Studios <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-
-        <article class="project project--atlas">
-          <div class="project-art atlas-art" aria-hidden="true"><span class="art-index label">FIG. 02 / SYSTEM MAP</span><div class="atlas-diagram"><span>ASSETS</span><span>ATLAS</span><span>STOCK</span></div></div>
-          <div class="project-copy">
-            <p class="label"><span class="signal signal--pilot"></span> PILOT DEVELOPMENT</p>
-            <h3>Ferion Atlas</h3>
-            <p>I’m building a platform that tracks individual assets and stock quantities across office locations, with role-based access and audit history.</p>
-            <ul class="tags" aria-label="Technologies"><li>React</li><li>TypeScript</li><li>FastAPI</li><li>PostgreSQL</li></ul>
-            <a class="text-link" href="#atlas">Read the project details <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-      </div>
-      <div class="more-work">
-        <span class="label">ALSO BUILT</span>
-        <a href="https://lypsa.co.za/">LYP South Africa <span aria-hidden="true">↗</span></a>
-        <a href="https://jankoferreira.github.io/Berninamoot-demo-website/">Bernina Moot demo <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-
-    <section id="stack" class="stack-band" aria-labelledby="stack-title">
-      <div id="skills" class="stack wrap">
-        <div class="section-heading">
-          <p class="label">02 / TECH GLOBE</p>
-          <h2 id="stack-title">The tools I<br> build with.</h2>
-          <p>React and TypeScript on the frontend. Python and FastAPI for APIs. PostgreSQL and SQL for data. I also work with C# and automate office workflows.</p>
-          <a class="text-link" href="#journey">Explore my career journey <span aria-hidden="true">↗</span></a>
-        </div>
-        <div id="skillsGlobeMount" class="skills-globe-mount"></div>
-      </div>
-    </section>
-
-    <section id="journey" class="journey wrap"><header class="section-heading"><p class="label">03 / CAREER JOURNEY</p><h2>How I got here.</h2></header>    <article id="atlas" class="case-study" aria-labelledby="atlas-title">
-      <header><p class="label">2026 / PILOT DEVELOPMENT</p><h2 id="atlas-title">Ferion Atlas</h2><p>Full-stack asset and inventory platform</p></header>
-      <div>
-        <h3>The problem</h3>
-        <p>Office teams need to know where equipment is, how much stock is available, and who changed a record.</p>
-        <h3>What I built</h3>
-        <p>Atlas separates individually tracked assets from stock quantities. Asset workflows cover labels, transfers and loans. Inventory workflows cover purchasing and stock takes. Organisation-scoped roles and audit history support access control and traceability.</p>
-        <ul class="tags" aria-label="Technologies"><li>React</li><li>TypeScript</li><li>FastAPI</li><li>PostgreSQL</li></ul>
-      </div>
-    </article>
-
-    <div class="timeline">
-      <article><p class="label">2026 / EDUCATION</p><h2>Eduvos graduate</h2><p>Completed the Higher Certificate in Information Systems (Software Development).</p></article>
-      <article><p class="label">2024–PRESENT / LIVING CHURCH OF GOD SA</p><h2>Data &amp; Systems Administrator</h2><p>Build and support tools for call centre workflows, reporting, and registration. Develop AppSheet applications and VBA automations for office teams.</p></article>
-      <article><p class="label">2020–PRESENT / VOLUNTEERING</p><h2>Live webcast operations</h2><p>Operate live webcasts and support audiovisual setup, production and troubleshooting.</p></article>
-    </div>
-</section>
-    <section id="contact" class="contact wrap" aria-labelledby="contact-title">
-      <div class="section-heading">
-        <p class="label">03 / CONTACT</p>
-        <h2 id="contact-title">Let’s build<br> something.</h2>
-        <p>Open to software development roles and selected projects.</p>
-        <div class="contact-links">
-          <a class="text-link" href="mailto:Janko.Ferreira@gmail.com">Email <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="https://github.com/JankoFerreira">GitHub <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="https://wa.me/27682712616">WhatsApp <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-      <form action="https://formspree.io/f/mdaazpvn" method="post">
-        <label for="name">Name</label><input id="name" name="name" autocomplete="name" required>
-        <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required>
-        <label for="message">Message</label><textarea id="message" name="message" rows="4" required></textarea>
-        <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off">
-        <button class="button button--ink" type="submit">Send message <span aria-hidden="true">↗</span></button>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer wrap"><p>Janko Ferreira · Pretoria, South Africa</p><a class="text-link" href="#page-top">Back to top ↑</a></footer>
-  <button type="button" class="back-top" aria-label="Back to top" hidden>
-    <svg class="back-top__meter" viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="2" width="48" height="48" rx="8" pathLength="100"/></svg>
-    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6h14M6 14l6-6 6 6m-6-6v13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Janko Ferreira, a full-stack developer based in Pretoria. Explore websites, practical business systems, skills and experience." />
+    <meta name="theme-color" content="#050b17" />
+    <link rel="canonical" href="https://jlfdev.co.za/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Janko Ferreira | Full-Stack Developer</title>
+    <script type="module" crossorigin src="/assets/index-CJlgDZRJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BqTI8VWi.css">
+  </head>
+  <body class="loaded">
+    <div id="root"></div>
+    <noscript>Please enable JavaScript to view this portfolio, or email Janko.Ferreira@gmail.com.</noscript>
+  </body>
 </html>

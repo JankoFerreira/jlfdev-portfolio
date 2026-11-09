@@ -1,0 +1,46 @@
+body { background:#050b17; overflow-x:clip; }
+body > #root, body.loaded > #root { opacity:1; transform:none; transition:none; position:relative; z-index:auto; }
+body:not(.loaded) { overflow:auto; }
+#root { isolation:isolate; }
+.portfolio-background { position:fixed; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(ellipse at 15% 20%,#103b5055,transparent 55%),radial-gradient(ellipse at 85% 35%,#4b236955,transparent 55%),linear-gradient(180deg,#050b17,#091524); }
+.portfolio-background::after { content:""; position:absolute; inset:0; background:linear-gradient(#9bd7ff05 1px,transparent 1px),linear-gradient(90deg,#9bd7ff05 1px,transparent 1px); background-size:54px 54px; }
+main, footer { position:relative; }
+[id] { scroll-margin-top:110px; }
+.hero { min-height:100svh; }
+.hero-name { overflow-wrap:break-word; }
+.hero-roles-line { display:block; }
+.hero-content { max-width:100%; }
+.hero-availability { flex-wrap:wrap; }
+.hero-badge { margin-bottom:24px; }
+.reveal,.reveal-up,.reveal-left,.reveal-right,.journey-item { opacity:1!important; transform:none!important; will-change:auto!important; }
+*,*::before,*::after { animation:none!important; }
+.jlf-about-focus-track { flex-wrap:wrap; width:auto; transform:none; gap:12px; }
+.jlf-about-focus-pill[aria-hidden="true"] { display:none; }
+.jlf-about-focus-reel { overflow:visible; }
+.jlf-about-card { backdrop-filter:none; }
+.experience-project-card { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); }
+.experience-project-preview { min-width:0; overflow:hidden; border-radius:16px; }
+.experience-project-preview img { display:block; width:100%; height:100%; min-height:230px; max-height:430px; object-fit:cover; object-position:top; }
+.project-monogram { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:300px; height:100%; background:radial-gradient(ellipse at top right,#743da654,transparent 65%),linear-gradient(130deg,#0e2b40,#08121f); color:#b9f4ff; font:700 clamp(2.8rem,7vw,6rem)/1.1 var(--font-display); letter-spacing:-.06em; }
+.project-monogram span { font:600 .65rem/1.5 var(--font-body); letter-spacing:.2em; margin-top:24px; }
+.project-tags { display:flex; flex-wrap:wrap; list-style:none; gap:6px; margin:12px 0; }
+.project-tags li { border:1px solid #81d9ef44; border-radius:5px; padding:4px 8px; font-size:.78rem; }
+.contact-form { display:grid; gap:9px; width:min(100%,650px); margin:24px auto 0; }
+.contact-form label { text-align:left; color:#dff9ff; }
+.contact-form input,.contact-form textarea { font:inherit; background:#0b1a2c; border:1px solid #789db5; border-radius:8px; padding:13px; color:white; width:100%; }
+.contact-form textarea { resize:vertical; }
+.contact-form p { max-width:100%; }
+.react-back-top { position:fixed; z-index:1001; right:18px; bottom:18px; display:grid; place-items:center; width:48px; height:48px; border:1px solid #77d6f5; border-radius:50%; color:#dff9ff; background:#091a2e; text-decoration:none; font-size:1.6rem; }
+.react-menu { position:absolute; top:76px; right:0; display:grid; width:min(280px,calc(100vw - 32px)); padding:12px; gap:5px; background:#081525; border:1px solid #6ab8da66; border-radius:16px; box-shadow:0 16px 40px #0006; }
+.react-menu a { color:#dff9ff; padding:10px; text-decoration:none; border-radius:8px; }
+.react-menu a:hover { background:#12344a; }
+.skip-link { position:fixed; z-index:2000; left:16px; top:16px; padding:10px 15px; background:#dff9ff; color:#061525; transform:translateY(-200%); }
+.skip-link:focus { transform:none; }
+:focus-visible { outline:2px solid #9debff; outline-offset:4px; }
+.skills-globe-component .sg-globe { touch-action:pan-y; }
+.skills-globe-component .sg-globe-wrap { filter:none; }
+.skills-globe-component .sg-globe-hint { backdrop-filter:none; }
+.skills-globe-component .sg-skill-node { will-change:auto; }
+@media(max-width:1000px) { .experience-project-card { grid-template-columns:1fr; }.nav-links { min-width:0; gap:0; }.nav-links a { padding-inline:12px; } }
+@media(max-width:768px) { .hero { padding-top:125px; }.navbar { top:12px; width:calc(100% - 28px); }.brand-pill { width:54px; height:54px; }.hero-name { font-size:clamp(2rem,8.5vw,3.7rem); }.experience-content { padding-inline:16px; }.journey-text { min-width:0; }.hero-availability { gap:8px; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
