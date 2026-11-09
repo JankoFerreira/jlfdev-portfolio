@@ -28,7 +28,7 @@
   </header>
 
   <main id="main">
-    <section class="hero wrap" aria-labelledby="hero-title">
+    <section id="home" class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="label"><span class="signal"></span> FULL-STACK DEVELOPER · PRETORIA, ZA</p>
         <h1 id="hero-title">I build what<br> work <em>runs on.</em></h1>
@@ -104,7 +104,7 @@
     </section>
 
     <section id="stack" class="stack-band" aria-labelledby="stack-title">
-      <div class="stack wrap">
+      <div id="skills" class="stack wrap">
         <div class="section-heading">
           <p class="label">02 / TECH GLOBE</p>
           <h2 id="stack-title">The tools I<br> build with.</h2>
@@ -130,6 +130,7 @@
         <label for="name">Name</label><input id="name" name="name" autocomplete="name" required>
         <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required>
         <label for="message">Message</label><textarea id="message" name="message" rows="4" required></textarea>
+        <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off">
         <button class="button button--ink" type="submit">Send message <span aria-hidden="true">↗</span></button>
       </form>
     </section>
