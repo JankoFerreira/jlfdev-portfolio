@@ -41,3 +41,38 @@ body > #root { opacity:1; transform:none; }
 @media(pointer:coarse),(prefers-reduced-motion:reduce){#paint-canvas { display:none; }}
 @media(max-width:480px){.hero-name-intro { font-size:clamp(1.8rem,8vw,3rem); }.experience-project-copy { overflow-wrap:anywhere; }.journey-date { flex-shrink:0; }}
 .experience-marquee-block,.back-to-top,.skills-globe-component .sg-globe-hint { backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
+/* Custom pointer updates only on input, with no perpetual animation loop. */
+.custom-pointer { position:fixed; left:0; top:0; z-index:12000; pointer-events:none; opacity:0; }
+.custom-pointer.is-visible { opacity:1; }
+.pointer-ring,.pointer-dot { position:absolute; left:0; top:0; border-radius:50%; transform:translate(-50%,-50%); }
+.pointer-ring { width:26px; height:26px; border:1px solid #86e8ff; background:#56e7ff08; transition:width .16s,height .16s,background-color .16s; }
+.pointer-dot { width:4px; height:4px; background:#e9fcff; }
+.is-link .pointer-ring { width:42px; height:42px; background:#8f6bff30; border-color:#cbbcff; }
+.is-pressed .pointer-ring { width:18px; height:18px; }
+@media(hover:hover) and (pointer:fine){html.custom-pointer-active,html.custom-pointer-active * { cursor:none!important; }html.custom-pointer-active:has(dialog[open]),html.custom-pointer-active:has(dialog[open]) * { cursor:auto!important; }html:has(dialog[open]) .custom-pointer { display:none; }}
+@media(pointer:coarse){.custom-pointer { display:none; }}
+.intro-lite { position:fixed; inset:0; z-index:9999; display:grid; place-items:center; background:#06101e; pointer-events:none; animation:introExit .2s ease .45s forwards; }
+.intro-lite>div { width:min(440px,85vw); text-align:center; }
+.intro-lite span { display:block; color:#82d9ef; font-size:.7rem; letter-spacing:.25em; }
+.intro-lite strong { display:block; margin:18px 0 25px; font:600 clamp(2rem,6vw,3.5rem)/1.1 var(--font-display); color:#f3fbff; }
+.intro-lite i { display:block; height:2px; background:linear-gradient(90deg,#56e7ff,#a08cff); transform-origin:left; animation:introLine .45s ease-out both; }
+@keyframes introLine { from{transform:scaleX(0)}to{transform:scaleX(1)} }
+@keyframes introExit { to{opacity:0} }
+.command-launch { position:fixed; left:18px; bottom:18px; z-index:1200; display:flex; align-items:center; gap:10px; border:1px solid #83d7f04d; border-radius:12px; background:#0b192bf2; color:#e6f7ff; padding:12px 15px; font:600 .8rem var(--font-body); }
+.command-launch kbd { font:inherit; font-size:.65rem; opacity:.65; }
+.command-dialog { position:fixed; inset:0; margin:auto; width:min(520px,calc(100vw - 32px)); max-height:calc(100svh - 32px); padding:0; border:1px solid #80d5f05c; border-radius:20px; background:#0a1627; color:#e6f7ff; box-shadow:0 24px 80px #0008; }
+.command-dialog::backdrop { background:#020813bb; }
+.command-panel { padding:22px; }
+.command-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+.command-heading p { color:#8be3f5; font-size:.65rem; letter-spacing:.18em; margin-bottom:8px; }
+.command-heading h2 { font:600 1.5rem var(--font-display); }
+.command-heading button { border:0; border-radius:8px; background:#ffffff0d; color:inherit; width:36px; height:36px; }
+.command-panel input { width:100%; padding:14px; border:1px solid #8be3f555; border-radius:10px; font:inherit; color:inherit; background:#030d1c; }
+.command-results { display:grid; gap:5px; margin-top:12px; }
+.command-result { display:flex; align-items:center; justify-content:space-between; padding:12px; text-align:left; color:inherit; background:transparent; border:1px solid transparent; border-radius:10px; font:600 .9rem var(--font-body); }
+.command-result small { display:block; margin-top:4px; color:#99aabe; font-size:.7rem; font-weight:400; }
+.command-result:hover,.command-result:focus-visible { background:#56e7ff10; border-color:#56e7ff50; }
+.command-help { margin-top:16px; color:#99aabe; font-size:.65rem; }
+:focus-visible { outline:2px solid #86e8ff; outline-offset:3px; }
+@media(max-width:600px){.command-launch kbd{display:none}.command-launch{padding:10px 12px}.command-panel{padding:16px}}
+@media(prefers-reduced-motion:reduce){.intro-lite{display:none}.pointer-ring{transition:none}}

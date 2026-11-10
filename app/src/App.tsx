@@ -1,8 +1,9 @@
 import {type CSSProperties} from 'react';
+import {CustomPointer,CommandMenu} from './Extras';
 import {About} from './About';
 import {TechGlobe} from './TechGlobe';
 import {RoleRotator,Loader,useOriginalInteractions} from './OriginalEffects';
-export function App(){useOriginalInteractions();return <><Loader />
+export function App(){useOriginalInteractions();return <><Loader /><CustomPointer /><CommandMenu />
     <div className="fx-stage paint-atmosphere" aria-hidden="true"><canvas id="paint-canvas" /></div>
     <button id="backToTop" className="back-to-top" type="button" aria-label="Back to top">
         <span className="back-to-top__ring" aria-hidden="true"></span>

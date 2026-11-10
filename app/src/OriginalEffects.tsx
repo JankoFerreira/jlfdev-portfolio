@@ -1,10 +1,15 @@
-import {useEffect,useRef,useState,type CSSProperties} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {mountBackground} from './background';
 export function Loader(){
  const [done,setDone]=useState(false);
- useEffect(()=>{document.body.classList.remove('loaded');const timer=window.setTimeout(()=>{document.body.classList.add('loaded');setDone(true);},matchMedia('(prefers-reduced-motion: reduce)').matches?0:1100);return ()=>{clearTimeout(timer);document.body.classList.add('loaded');};},[]);
+ useEffect(()=>{
+  document.body.classList.add('loaded');
+  let seen=false;try{seen=sessionStorage.getItem('jlf-intro-seen')==='1';sessionStorage.setItem('jlf-intro-seen','1');}catch{/* Storage may be disabled. */}
+  const timer=window.setTimeout(()=>setDone(true),seen||matchMedia('(prefers-reduced-motion: reduce)').matches?0:650);
+  return ()=>clearTimeout(timer);
+ },[]);
  if(done)return null;
- return <div className="loader" aria-hidden="true"><div className="loader-grid"/><div className="glow-orb one"/><div className="glow-orb two"/><div className="loader-top"/><div className="loader-bottom"/><div className="loader-center"><div className="loader-label">JLF / PORTFOLIO</div><div className="name-wrap">{[...'JANKO FERREIRA'].map((letter,i)=><span key={i} className={letter===' '?'char space':'char'} style={{'--char-delay':`${i*35}ms`} as CSSProperties}>{letter===' '?'\u00a0':letter}</span>)}</div><div className="loader-line"/><div className="status">Welcome to my world</div></div></div>;
+ return <div className="intro-lite" aria-hidden="true"><div><span>JLF / PORTFOLIO</span><strong>Janko Ferreira</strong><i/></div></div>;
 }
 const roles=['Full Stack Developer','Web Developer','AI-Optimized Web Developer','Digital Solutions Builder'];
 export function RoleRotator(){
