@@ -22,11 +22,12 @@ export function TechGlobe() {
     let rotationX = -0.35, rotationY = 0.55, radius = 0;
     let pointer: number | null = null;
     let previousX = 0, previousY = 0, frame = 0;
-    let visible = false;
+    let visible = false, idleTimer = 0; const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const clampX = () => { rotationX = Math.max(-1.05, Math.min(1.05, rotationX)); };
 
     function draw() {
       frame = 0;
+      clearTimeout(idleTimer); if (pointer === null && !reduced.matches) rotationY += 0.002;
       const cy = Math.cos(rotationY), sy = Math.sin(rotationY);
       const cx = Math.cos(rotationX), sx = Math.sin(rotationX);
       points.forEach((point, index) => {
@@ -43,8 +44,10 @@ export function TechGlobe() {
           ? `rotateX(${[75, 45, 15][index] + rotationX * 45}deg)`
           : `rotateY(${(index - 3) * 35 + rotationY * 45}deg)`;
       });
+      if (visible && !document.hidden && !reduced.matches) idleTimer = window.setTimeout(schedule, 33);
     }
     function schedule() {
+      clearTimeout(idleTimer);
       if (visible && !document.hidden && !frame) frame = requestAnimationFrame(draw);
     }
     const resize = new ResizeObserver(() => {
@@ -54,7 +57,7 @@ export function TechGlobe() {
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (visible) schedule();
-      else { cancelAnimationFrame(frame); frame = 0; }
+      else { cancelAnimationFrame(frame); clearTimeout(idleTimer); frame = 0; }
     });
     function down(event: PointerEvent) {
       if (!event.isPrimary || event.button !== 0) return;
@@ -96,7 +99,7 @@ export function TechGlobe() {
     element.addEventListener("keydown", key);
     document.addEventListener("visibilitychange", schedule);
     return () => {
-      cancelAnimationFrame(frame); resize.disconnect(); observer.disconnect();
+      clearTimeout(idleTimer); cancelAnimationFrame(frame); resize.disconnect(); observer.disconnect();
       element.removeEventListener("pointerdown", down);
       element.removeEventListener("pointermove", move);
       element.removeEventListener("pointerup", up);

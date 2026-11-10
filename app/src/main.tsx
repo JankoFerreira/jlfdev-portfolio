@@ -10,3 +10,4 @@ import "./performance.css";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(<App />);
+import "../css/animations.css";

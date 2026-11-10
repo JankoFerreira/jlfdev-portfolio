@@ -1,0 +1,65 @@
+/* ========================= */
+/* FADE & REVEAL ANIMATIONS */
+/* ========================= */
+
+.fade-down {
+    animation: fadeDown 1s ease forwards;
+}
+
+.navbar.fade-down {
+    animation: fadeDownCentered 0.9s ease forwards;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDownCentered {
+    from { opacity: 0; transform: translateX(-50%) translateY(-40px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInText 1.2s ease forwards;
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.delayed-fade {
+    opacity: 0;
+    animation: delayedFade 1.2s ease forwards;
+    animation-delay: 2.5s;
+}
+
+@keyframes delayedFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll reveal helpers */
+.reveal, .reveal-up, .reveal-left, .reveal-right {
+    opacity: 0;
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    will-change: opacity, transform;
+}
+
+.reveal.active,
+.reveal-up.active,
+.reveal-left.active,
+.reveal-right.active {
+    opacity: 1;
+}
+
+.reveal-up { transform: translateY(40px); }
+.reveal-up.active { transform: translateY(0); }
+
+.reveal-left { transform: translateX(-60px); }
+.reveal-left.active { transform: translateX(0); }
+
+.reveal-right { transform: translateX(60px); }
+.reveal-right.active { transform: translateX(0); }
