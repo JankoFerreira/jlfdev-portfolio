@@ -29,3 +29,15 @@ html { scroll-behavior:auto; }
 *,*::before,*::after { animation:none!important; transition:none!important; }
 }
 body > #root { opacity:1; transform:none; }
+
+/* The paint field replaces the rain, moving mask and filtered mesh entirely. */
+.paint-atmosphere { background:radial-gradient(ellipse at 18% 25%,#153f5480,transparent 60%),radial-gradient(ellipse at 85% 55%,#41245188,transparent 65%),linear-gradient(135deg,#030b14,#0b1022); }
+#paint-canvas { display:block; width:100%; height:100%; opacity:.8; pointer-events:none; }
+.navbar,.nav-links,.brand-pill,.hero-badge,.hero-btn,.hero-availability span,.jlf-about-card,.experience-project-card,.journey-card { backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
+.hero-word { animation:none; filter:none; will-change:auto; }
+.glass-heading::before,.glass-heading::after { animation:none; filter:none; }
+.glass-heading { animation:none; }
+.hero-word:hover { color:#86ebff; }
+@media(pointer:coarse),(prefers-reduced-motion:reduce){#paint-canvas { display:none; }}
+@media(max-width:480px){.hero-name-intro { font-size:clamp(1.8rem,8vw,3rem); }.experience-project-copy { overflow-wrap:anywhere; }.journey-date { flex-shrink:0; }}
+.experience-marquee-block,.back-to-top,.skills-globe-component .sg-globe-hint { backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }

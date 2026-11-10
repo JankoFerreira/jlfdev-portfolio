@@ -7,7 +7,7 @@ await mkdir('node_modules/.portfolio-check',{recursive:true});
 await build({entryPoints:['app/src/App.tsx'],outfile:'node_modules/.portfolio-check/app.mjs',bundle:true,platform:'node',format:'esm',packages:'external',jsx:'automatic'});
 const {App}=await import('../node_modules/.portfolio-check/app.mjs');
 const html=renderToStaticMarkup(createElement(App));
-for(const marker of ['rain-canvas','cover-layer__mesh','hero-drop-word','hero-roles-rotator','experience-project-preview-frame','experience-marquee','sg-globe','contactForm','id="journey"']) assert.ok(html.includes(marker),`Missing original feature: ${marker}`);
+for(const marker of ['paint-canvas','paint-atmosphere','hero-drop-word','hero-roles-rotator','experience-project-preview-frame','experience-marquee','sg-globe','contactForm','id="journey"']) assert.ok(html.includes(marker),`Missing original feature: ${marker}`);
 assert.ok(!/Construction Safety Management|CSM--Website|media\/csm/i.test(html),'Lost client reintroduced');
 assert.ok(html.includes('nxwbstudios.co.za')&&html.includes('Graduated from Eduvos in 2026'));
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);

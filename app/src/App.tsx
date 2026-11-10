@@ -3,28 +3,7 @@ import {About} from './About';
 import {TechGlobe} from './TechGlobe';
 import {RoleRotator,Loader,useOriginalInteractions} from './OriginalEffects';
 export function App(){useOriginalInteractions();return <><Loader />
-    <div className="fx-stage" aria-hidden="true">
-        <div className="rain-base">
-            <canvas id="rain-canvas"></canvas>
-        </div>
-
-        <div className="cover-layer">
-            <div className="cover-layer__mesh" id="meshLayer">
-                <span className="flow-ribbon flow-ribbon--1"></span>
-                <span className="flow-ribbon flow-ribbon--2"></span>
-                <span className="flow-ribbon flow-ribbon--3"></span>
-                <span className="blob blob--1"></span>
-                <span className="blob blob--2"></span>
-                <span className="blob blob--3"></span>
-                <span className="blob blob--4"></span>
-                <span className="blob blob--5"></span>
-            </div>
-            <div className="cover-layer__overlay"></div>
-            <div className="cover-layer__noise"></div>
-            <div className="cover-layer__vignette"></div>
-        </div>
-    </div>
-
+    <div className="fx-stage paint-atmosphere" aria-hidden="true"><canvas id="paint-canvas" /></div>
     <button id="backToTop" className="back-to-top" type="button" aria-label="Back to top">
         <span className="back-to-top__ring" aria-hidden="true"></span>
         <span className="back-to-top__core" aria-hidden="true">

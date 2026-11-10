@@ -1,0 +1,34 @@
+import {build} from 'esbuild';
+import assert from 'node:assert/strict';
+await build({entryPoints:['app/src/background.ts'],outfile:'node_modules/.portfolio-check/background.mjs',bundle:true,platform:'node',format:'esm'});
+const {mountBackground}=await import('../node_modules/.portfolio-check/background.mjs');
+let clock=0, next=1, draws=0,deleted=0; const frames=new Map();
+const gl=new Proxy({}, {get(_,key){
+ if(key==='getShaderParameter'||key==='getProgramParameter')return ()=>true;
+ if(String(key).startsWith('create'))return ()=>({});
+ if(key==='getAttribLocation')return ()=>0;
+ if(key==='getUniformLocation')return ()=>({});
+ if(key==='checkFramebufferStatus')return ()=>1;
+ if(key==='drawArrays')return ()=>draws++;
+ if(String(key).startsWith('delete'))return ()=>deleted++;
+ return /^[A-Z0-9_]+$/.test(String(key))?1:()=>{};
+}});
+const canvas=Object.assign(new EventTarget(),{getContext:()=>gl,width:0,height:0});
+const doc=Object.assign(new EventTarget(),{hidden:false,querySelector:()=>canvas});
+const win=new EventTarget();const reduced=Object.assign(new EventTarget(),{matches:false});const coarse=Object.assign(new EventTarget(),{matches:false});
+Object.assign(globalThis,{document:doc,window:win,innerWidth:1920,innerHeight:1080,matchMedia:q=>q.includes('coarse')?coarse:reduced,requestAnimationFrame:fn=>{const id=next++;frames.set(id,fn);return id;},cancelAnimationFrame:id=>frames.delete(id)});
+Object.defineProperty(globalThis,'performance',{value:{now:()=>clock},configurable:true});
+const pointer=()=>{const e=new Event('pointermove');Object.assign(e,{clientX:700,clientY:350,pointerType:'mouse'});win.dispatchEvent(e);};
+function tick(time){clock=time;const batch=[...frames.values()];frames.clear();batch.forEach(fn=>fn(time));}
+let cleanup=mountBackground();
+assert.equal(frames.size,0,'No idle loop on mount');assert.equal(canvas.width,768,'Resolution capped');
+pointer();assert.equal(frames.size,1,'One loop starts');pointer();assert.equal(frames.size,1,'Pointer events do not stack loops');
+tick(40);assert.equal(draws,2,'One simulation and one display pass');
+for(let time=80;time<=3000;time+=40)tick(time);
+assert.equal(frames.size,0,'Effect stops after fading');
+pointer();win.dispatchEvent(new Event('scroll'));assert.equal(frames.size,0,'Scroll stops effect');
+pointer();doc.hidden=true;doc.dispatchEvent(new Event('visibilitychange'));assert.equal(frames.size,0,'Hidden tab stops effect');doc.hidden=false;
+pointer();cleanup();assert.equal(frames.size,0,'Unmount cancels rendering');assert.ok(deleted>=9,'GPU resources released');const before=deleted;cleanup();assert.equal(deleted,before,'Cleanup is idempotent');pointer();assert.equal(frames.size,0,'Listeners removed');
+coarse.matches=true;cleanup=mountBackground();pointer();assert.equal(frames.size,0,'Touch uses static fallback');cleanup();coarse.matches=false;
+reduced.matches=true;cleanup=mountBackground();pointer();assert.equal(frames.size,0,'Reduced motion uses static fallback');cleanup();
+console.log('PASS: bounded resolution, no duplicate/idle loop, fade completion, scroll/hidden pause, cleanup, touch and reduced-motion fallbacks.');
